@@ -5,30 +5,30 @@ import chai from 'chai'
 describe('AccountKit', function () {
   beforeEach(function () {
     window.AccountKit = null
-  });
+  })
 
   it('login should use callback', function () {
-    const vm = createVM(this, 
+    const vm = createVM(this,
     `<AccountKit ref='accountKit'
       appId='1'
       version='v1.0'
       state='csrf'      
       :autoInit='false'>      
     </AccountKit>`, { components: { AccountKit }})
-    
+
     window.AccountKit = {
       login: (loginType, loginParams, responseCallback) => {
         responseCallback({})
-      }  
+      }
     }
     const callback = function (resp) {
       console.log('adi')
     }
     const accountKitMock = sinon.mock(window.AccountKit)
-    accountKitMock.expects('login').once().withArgs('PHONE',{}, callback)
-    vm.$refs.accountKit.login({}, callback)    
+    accountKitMock.expects('login').once().withArgs('PHONE', {}, callback)
+    vm.$refs.accountKit.login({}, callback)
     accountKitMock.verify()
-    accountKitMock.restore()    
+    accountKitMock.restore()
   })
 
   it('should render correct contents', function () {
@@ -64,8 +64,8 @@ describe('AccountKit', function () {
       state='csrf'
       :onResponse='${resp => console.log(resp)}'>      
     </AccountKit>
-    `, { components: { AccountKit }})    
-    
+    `, { components: { AccountKit }})
+
     setTimeout(() => {
       var should = chai.should()
       should.exist(window.AccountKit)
@@ -73,5 +73,4 @@ describe('AccountKit', function () {
       done()
     }, 1000)
   })
-
 })

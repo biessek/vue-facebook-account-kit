@@ -32,19 +32,21 @@ export default {
     }
   },
 
-  methods: {    
+  methods: {
     initAccountKit () {
-      const tag = document.createElement("script");
+      const tag = document.createElement('script')
       tag.setAttribute(
-        "src",
+        'src',
         `https://sdk.accountkit.com/${this.language}/sdk.js`
-      );
-      tag.setAttribute("id", "account-kit");
-      tag.setAttribute("type", "text/javascript");
+      )
+      tag.setAttribute('id', 'account-kit')
+      tag.setAttribute('type', 'text/javascript')
       tag.onload = () => {
-        window.AccountKit_OnInteractive = this.onLoad.bind(this);
-      };
-      document.head.appendChild(tag);      
+        /* eslint-disable camelcase */
+        window.AccountKit_OnInteractive = this.onLoad.bind(this)
+        /* eslint-enable camelcase */
+      }
+      document.head.appendChild(tag)
     },
 
     /**
@@ -61,11 +63,11 @@ export default {
         fbAppEventsEnabled
       })
     },
-    /**console.log
+    /** console.log
      * @param {*} loginParams @see https://developers.facebook.com/docs/accountkit/webjs/reference
      */
     login (loginParams, callback) {
-        window.AccountKit.login(this.loginType, loginParams, callback)
+      window.AccountKit.login(this.loginType, loginParams, callback)
     }
   }
 }
