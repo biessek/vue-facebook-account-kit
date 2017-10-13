@@ -14,11 +14,6 @@ import VueTypes from 'vue-types'
  */
 export default {
   name: 'AccountKit',
-  data () {
-    return {
-      isDisabled: this.disabled
-    }
-  },
   props: {
     appId: VueTypes.string.isRequired,
     debug: VueTypes.bool.def(true),
@@ -26,14 +21,19 @@ export default {
     state: VueTypes.string.isRequired,
     fbAppEventsEnabled: VueTypes.bool.def(false),
     /** callback to login function */
-    onResponse: VueTypes.instanceOf(Function).isRequired,
     loginType: VueTypes.oneOf(['PHONE', 'EMAIL']).def('PHONE'),
     /** @see https://developers.facebook.com/docs/accountkit/languages */
     language: VueTypes.string.def('en_US'),
-    disabled: VueTypes.bool.def(false)
+    autoInit: VueTypes.bool.def(true)
   },
   mounted () {
-    if (!window.AccountKit) {
+    if (!window.AccountKit && this.autoInit) {
+      this.initAccountKit()
+    }
+  },
+
+  methods: {    
+    initAccountKit () {
       const tag = document.createElement("script");
       tag.setAttribute(
         "src",
@@ -44,12 +44,9 @@ export default {
       tag.onload = () => {
         window.AccountKit_OnInteractive = this.onLoad.bind(this);
       };
-      document.head.appendChild(tag);
-    }
-  },
+      document.head.appendChild(tag);      
+    },
 
-  methods: {
-    
     /**
      * Implementation of AccountKit_OnInteractive
      * Initializes the facebook authentication kit calling the init function.
@@ -63,17 +60,12 @@ export default {
         version,
         fbAppEventsEnabled
       })
-      this.isDisabled = false
     },
-    /**
+    /**console.log
      * @param {*} loginParams @see https://developers.facebook.com/docs/accountkit/webjs/reference
      */
-    login (loginParams) {
-      if (this.isDisabled) {
-        return
-      }
-      const { onResponse } = this.props
-      window.AccountKit.login(this.props.loginType, loginParams, onResponse)
+    login (loginParams, callback) {
+        window.AccountKit.login(this.loginType, loginParams, callback)
     }
   }
 }

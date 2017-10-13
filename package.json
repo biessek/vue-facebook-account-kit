@@ -1,7 +1,7 @@
 {
   "name": "vue-facebook-account-kit",
   "version": "0.1.0",
-  "description": "A Vue.js Plugin",
+  "description": "A Vue.js Plugin to instantiate the facebook account kit",
   "author": "Alessandro Biessek <alessandro@biessek.rocks>",
   "main": "dist/vue-facebook-account-kit.common.js",
   "module": "dist/vue-facebook-account-kit.esm.js",

@@ -1,4 +1,4 @@
-# VueFacebookAccountKit
+# AccountKit
 
 [![npm](https://img.shields.io/npm/v/vue-facebook-account-kit.svg)](https://www.npmjs.com/package/vue-facebook-account-kit) [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
@@ -16,8 +16,8 @@ npm install --save vue-facebook-account-kit
 
 ```js
 import Vue from 'vue'
-import VueFacebookAccountKit from 'vue-facebook-account-kit'
-Vue.use(VueFacebookAccountKit)
+import AccountKit from 'vue-facebook-account-kit'
+Vue.use(AccountKit)
 ```
 
 ### Browser
