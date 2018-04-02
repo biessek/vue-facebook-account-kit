@@ -31,6 +31,9 @@ Vue.use(AccountKit)
 <script src="https://unpkg.com/vue-facebook-account-kit"></script>
 ```
 
+### Small example
+[https://github.com/biessek/fb-account-kit-example](https://github.com/biessek/fb-account-kit-example)
+
 ## Development
 
 ### Launch visual tests
