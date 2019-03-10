@@ -17,9 +17,11 @@ export default {
   props: {
     appId: VueTypes.string.isRequired,
     debug: VueTypes.bool.def(true),
-    version: VueTypes.string.isRequired,
-    state: VueTypes.string.isRequired,
+    display: VueTypes.oneOf(['popup', 'modal']).def('popup'),
     fbAppEventsEnabled: VueTypes.bool.def(false),
+    redirect: VueTypes.string.isRequired,
+    state: VueTypes.string.isRequired,
+    version: VueTypes.string.isRequired,
     /** callback to login function */
     loginType: VueTypes.oneOf(['PHONE', 'EMAIL']).def('PHONE'),
     /** @see https://developers.facebook.com/docs/accountkit/languages */
@@ -55,12 +57,15 @@ export default {
      * @see https://developers.facebook.com/docs/accountkit/webjs/reference
      */
     onLoad () {
-      const { appId, state, version, fbAppEventsEnabled } = this.$props
+      const { appId, debug, display, fbAppEventsEnabled, redirect, state, version } = this.$props
       window.AccountKit.init({
         appId,
+        debug,
+        display,
+        fbAppEventsEnabled,
+        redirect,
         state,
-        version,
-        fbAppEventsEnabled
+        version
       })
     },
     /** console.log
