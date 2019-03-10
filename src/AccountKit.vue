@@ -17,6 +17,7 @@ export default {
   props: {
     appId: VueTypes.string.isRequired,
     debug: VueTypes.bool.def(true),
+    display: VueTypes.oneOf(['popup', 'modal']).def('popup'),
     version: VueTypes.string.isRequired,
     state: VueTypes.string.isRequired,
     fbAppEventsEnabled: VueTypes.bool.def(false),
@@ -58,9 +59,11 @@ export default {
       const { appId, state, version, fbAppEventsEnabled } = this.$props
       window.AccountKit.init({
         appId,
+        debug,
+        display,
+        fbAppEventsEnabled,
         state,
-        version,
-        fbAppEventsEnabled
+        version
       })
     },
     /** console.log
