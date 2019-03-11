@@ -19,7 +19,7 @@ export default {
     debug: VueTypes.bool.def(true),
     display: VueTypes.oneOf(['popup', 'modal']).def('popup'),
     fbAppEventsEnabled: VueTypes.bool.def(false),
-    redirect: VueTypes.string.isRequired,
+    redirect: VueTypes.string,
     state: VueTypes.string.isRequired,
     version: VueTypes.string.isRequired,
     /** callback to login function */
