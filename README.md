@@ -1,4 +1,5 @@
-# AccountKit
+# DEPRECATED AccountKit
+## Facebook Account Kit is being deprecated: read more https://developers.facebook.com/docs/accountkit/
 
 [![npm](https://img.shields.io/npm/v/vue-facebook-account-kit.svg)](https://www.npmjs.com/package/vue-facebook-account-kit) [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
